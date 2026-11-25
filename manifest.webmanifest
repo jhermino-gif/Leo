@@ -1,0 +1,10 @@
+{
+  "name": "LEO · Asistente personal",
+  "short_name": "LEO",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#071426",
+  "theme_color": "#071426",
+  "description": "Prototipo de asistente personal LEO",
+  "icons": []
+}

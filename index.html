@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#071426">
+<meta name="description" content="LEO, asistente personal residente.">
+<link rel="manifest" href="manifest.webmanifest">
+<title>LEO · Asistente</title>
+<style>
+:root{color-scheme:dark;--bg:#071426;--panel:#10233b;--line:#24415f;--cyan:#66d9ff;--muted:#a9bed2}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% 0,#163b60 0,#071426 48%);font:16px system-ui;color:#f4f8fc;min-height:100vh}
+main{max-width:720px;margin:auto;padding:22px 16px 30px;display:flex;flex-direction:column;min-height:100vh}
+header{display:flex;align-items:center;gap:12px}.orb{width:48px;height:48px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#e7fbff,#66d9ff 25%,#1675ad 58%,#10233b 78%);box-shadow:0 0 28px #36bfff88}
+h1{font-size:25px;letter-spacing:5px;margin:0}.sub{font-size:12px;color:var(--muted);margin-top:2px}
+.status{margin-left:auto;font-size:11px;color:#9fe6bd;border:1px solid #31634e;border-radius:20px;padding:6px 9px}
+.hero{text-align:center;padding:28px 8px 18px}.hero .orb{width:96px;height:96px;margin:0 auto 14px;box-shadow:0 0 42px #36bfff66}.hero h2{font-size:22px;margin:0 0 6px}.hero p{color:var(--muted);font-size:14px;margin:0}
+.panel{background:#0c1d31eF;border:1px solid var(--line);border-radius:18px;padding:14px;margin:10px 0}
+#messages{display:flex;flex-direction:column;gap:10px;min-height:170px;max-height:38vh;overflow:auto}
+.msg{padding:11px 13px;border-radius:14px;max-width:90%;line-height:1.4;font-size:14px;white-space:pre-wrap}
+.leo{background:#132e49;border:1px solid #244b6c;align-self:flex-start}.user{background:#155276;align-self:flex-end}
+form{display:flex;gap:8px;margin-top:12px}input,textarea{background:#071426;color:white;border:1px solid #31516e;border-radius:12px;padding:13px;font:inherit;min-width:0}input{flex:1}
+button{background:#1689b8;color:white;border:0;border-radius:12px;padding:12px 16px;font-weight:650;font-size:14px}button.secondary{background:#17314d;border:1px solid #31516e}
+.row{display:flex;gap:8px;flex-wrap:wrap}.row button{flex:1}
+h3{font-size:15px;margin:0 0 8px}.hint{font-size:12px;color:var(--muted);line-height:1.5}
+#memory{width:100%;min-height:80px;resize:vertical;margin:8px 0}
+footer{text-align:center;color:#7f9ab4;font-size:11px;margin-top:auto;padding-top:18px}
+</style>
+</head>
+<body><main>
+<header><div class="orb"></div><div><h1>LEO</h1><div class="sub">ASISTENTE PERSONAL · VERSIÓN 1</div></div><div class="status">● En este dispositivo</div></header>
+<section class="hero"><div class="orb"></div><h2>Hola. Soy LEO.</h2><p>Mi primera base está aquí, en tu teléfono.</p></section>
+<section class="panel"><h3>Conversación</h3><div id="messages" aria-live="polite"><div class="msg leo">Hola. Ya estoy instalado como prototipo. Puedo guardar notas en este teléfono y abrir búsquedas en internet. Mi cerebro de IA y el control del PC serán las siguientes etapas.</div></div>
+<form id="chat"><input id="prompt" autocomplete="off" placeholder="Escribe una orden o una idea…"><button>Enviar</button></form></section>
+<section class="panel"><h3>Memoria de LEO</h3><p class="hint">Estas notas se guardan en el almacenamiento de este navegador, en este teléfono.</p><textarea id="memory" placeholder="Escribe aquí datos o instrucciones que LEO debe conservar…"></textarea><div class="row"><button id="save">Guardar memoria</button><button class="secondary" id="clear">Borrar memoria</button></div><p id="saved" class="hint"></p></section>
+<section class="panel"><h3>Conexiones</h3><div class="row"><button class="secondary" id="search">Buscar en internet</button><button class="secondary" id="install" hidden>Instalar LEO</button></div><p class="hint">La búsqueda se abrirá en el navegador. La conexión directa a servicios y una IA real se añadirán en una etapa posterior.</p></section>
+<footer>LEO Mobile · Prototipo inicial · Tus notas permanecen en este dispositivo.</footer>
+</main>
+<script>
+const $=s=>document.querySelector(s), box=$("#messages");
+function add(text,who="leo"){const d=document.createElement("div");d.className="msg "+who;d.textContent=text;box.append(d);box.scrollTop=box.scrollHeight}
+const memKey="leo_mobile_memory_v1";$("#memory").value=localStorage.getItem(memKey)||"";
+$("#save").onclick=()=>{localStorage.setItem(memKey,$("#memory").value);$("#saved").textContent="Memoria guardada en este teléfono."};
+$("#clear").onclick=()=>{if(confirm("¿Borrar toda la memoria guardada de LEO en este teléfono?")){$("#memory").value="";localStorage.removeItem(memKey);$("#saved").textContent="Memoria borrada."}};
+$("#chat").onsubmit=e=>{e.preventDefault();const q=$("#prompt").value.trim();if(!q)return;add(q,"user");$("#prompt").value="";
+const low=q.toLowerCase();
+if(low.startsWith("busca ")||low.startsWith("buscar ")){const term=q.replace(/^(busca|buscar)\s+/i,"");add("Abriré una búsqueda web sobre: "+term);window.open("https://www.google.com/search?q="+encodeURIComponent(term),"_blank");}
+else if(low.includes("mi memoria")||low.includes("qué recuerdas")){add($("#memory").value||"Todavía no tengo notas guardadas. Puedes agregarlas en Memoria de LEO.");}
+else{add("Recibí tu mensaje. En esta primera versión todavía no tengo conectado un modelo de IA; por ahora puedo guardar memoria local y abrir búsquedas. La siguiente etapa será conectar el cerebro de LEO.");}
+};
+$("#search").onclick=()=>{const q=prompt("¿Qué quieres que LEO busque?");if(q)window.open("https://www.google.com/search?q="+encodeURIComponent(q),"_blank")};
+let installPrompt;window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();installPrompt=e;$("#install").hidden=false});
+$("#install").onclick=async()=>{if(installPrompt){installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;$("#install").hidden=true}};
+if("serviceWorker" in navigator && location.protocol.startsWith("http"))navigator.serviceWorker.register("./sw.js").catch(()=>{});
+</script></body></html>
