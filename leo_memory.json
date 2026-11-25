@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Memoria portable para dar continuidad a proyectos y preferencias. No contiene contraseñas, códigos de verificación ni credenciales.",
+  "working_preferences": {
+    "language": "Español",
+    "style": [
+      "Instrucciones breves, claras y numeradas",
+      "Avanzar un paso a la vez al guiar interfaces",
+      "Comprobar el estado antes de modificar o borrar",
+      "Priorizar ejecución y pruebas sobre explicaciones largas",
+      "Preferir herramientas gratuitas y evitar suscripciones",
+      "No declarar terminado un trabajo sin comprobarlo"
+    ],
+    "motto": "Menos discurso, más ejecución."
+  },
+  "projects": {
+    "LEO": {
+      "status": "Prototipo web publicado en GitHub Pages",
+      "repository": "https://github.com/jhermino-gif/Leo",
+      "published_url": "https://jhermino-gif.github.io/Leo/",
+      "files": [
+        "index.html",
+        "manifest.webmanifest",
+        "sw.js",
+        "README.md"
+      ],
+      "verified": [
+        "La interfaz abre",
+        "La memoria local permanece después de cerrar y volver a abrir"
+      ],
+      "pending": [
+        "Conectar un modelo de IA real",
+        "Memoria portable y sincronizada",
+        "Modelo local",
+        "Control autorizado del PC",
+        "Conectores oficiales",
+        "Planificador de tareas largas"
+      ],
+      "security": [
+        "No guardar contraseñas ni códigos de verificación",
+        "No incluir secretos en repositorios públicos",
+        "Preferir OAuth y permisos limitados/revocables",
+        "El usuario completa personalmente la doble verificación",
+        "Pedir aprobación para acciones sensibles o irreversibles"
+      ]
+    },
+    "CERCA": {
+      "purpose": "Aplicación/mapa para dar visibilidad a negocios locales, comenzando por Maipú.",
+      "prices_clp": {
+        "socio_fundador": 2000,
+        "normal": 3500,
+        "full_exposicion": 5000
+      },
+      "promotion_rules": [
+        "Si falta material una semana, conservar la promoción aprobada anteriormente",
+        "Si nunca entrega material, mantener ficha básica y ubicación; no producir video ni contenido editorial sin material"
+      ]
+    },
+    "LADO VE": {
+      "purpose": "Sistema de creación y publicación de Shorts y revista digital.",
+      "goal": "Automatizar producción y publicación priorizando herramientas gratuitas."
+    },
+    "BRODERS_y_Universo_S": {
+      "purpose": "Universo narrativo con novela, cómics y personajes relacionados.",
+      "credits": {
+        "writer": "Aukan",
+        "editor": "Elian Valmont",
+        "assistant_editor": "Altair"
+      },
+      "notes": [
+        "Respetar continuidades, nombres, títulos y correcciones expresas",
+        "El título se escribe La Nina, sin tilde en la n"
+      ]
+    },
+    "music": {
+      "profile": "Pianista/tecladista.",
+      "instrument": "Yamaha PSR-E363",
+      "preferences": [
+        "Piano protagonista",
+        "Hammond/órgano, Rhodes y sonidos espaciales",
+        "Acompañamientos musicales, no MIDI genérico",
+        "Preferencia por soluciones gratuitas"
+      ]
+    }
+  },
+  "operating_protocol": [
+    "Revisar el estado real antes de cambiar algo",
+    "Dividir trabajos grandes en tareas pequeñas y verificables",
+    "Registrar avances, errores y siguiente paso",
+    "Distinguir hechos comprobados de hipótesis",
+    "Guardar progreso periódicamente para reanudar"
+  ],
+  "limitations": [
+    "Es un resumen del contexto disponible, no una exportación íntegra de todos los chats históricos",
+    "Debe poder editarse y ampliarse",
+    "No incluir datos sensibles innecesarios ni credenciales"
+  ]
+}
